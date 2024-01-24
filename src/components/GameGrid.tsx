@@ -4,13 +4,13 @@ import GameCard from "./GameCard";
 import GameCardSkelton from "./GameCardSkelton";
 import GameCardContainer from "./GameCardContainer";
 import { Genre } from "../Hooks/useGenre";
+import { GameQuery } from "../App";
 interface Props {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 }
 
-const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
-  const { data, errors, isLoading } = useGame(selectedGenre, selectedPlatform);
+const GameGrid = ({ gameQuery }: Props) => {
+  const { data, errors, isLoading } = useGame(gameQuery);
   const items = [1, 2, 3, 4, 5, 6];
   return (
     <>
@@ -23,7 +23,7 @@ const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
         {isLoading &&
           items.map((item) => (
             <GameCardContainer key={item}>
-              <GameCardSkelton  />
+              <GameCardSkelton />
             </GameCardContainer>
           ))}
         {data?.map((game) => (
