@@ -11,9 +11,8 @@ interface Props {
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, errors, isLoading } = useGame(gameQuery);
   const items = [1, 2, 3, 4, 5, 6];
+  if ( errors) return <Text colorScheme="red">{errors}</Text>
   return (
-    <>
-      {errors && <Text colorScheme="red">{errors}</Text>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         padding={"10px"}
@@ -31,7 +30,6 @@ const GameGrid = ({ gameQuery }: Props) => {
           </GameCardContainer>
         ))}
       </SimpleGrid>
-    </>
   );
 };
 
